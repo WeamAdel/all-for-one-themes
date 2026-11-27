@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Browse all 696 All for One themes for JetBrains IDEs, save favourites and copy the exact theme name.">
+<style>:root{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<title>All for One Themes</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a theme shelf. Sticky search and tone filter, favourites first, then every theme by tone; a preview dialog gives the exact name to pick in the IDE. */
+:root {
+  --paper: #f2efe9; --ink: #23262b; --ink-2: #5a5d63; --rule: #d8d2c7; --plate: #fbfaf7; --mark: #9a3f22; --star: #c98a12;
+  --display: "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --body: "Zen Kaku Gothic New", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #17191c; --ink: #e6e1d8; --ink-2: #a7a29a; --rule: #34373c; --plate: #1f2226; --mark: #e0956f; --star: #f0b545; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #17191c; --ink: #e6e1d8; --ink-2: #a7a29a; --rule: #34373c; --plate: #1f2226; --mark: #e0956f; --star: #f0b545; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 64px; display: grid; gap: 22px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 4px 0 0; text-wrap: balance; }
+header p { margin: 8px 0 0; color: var(--ink-2); max-width: 66ch; }
+.brandrow { display: flex; align-items: center; gap: 12px; } .brandrow .logo { flex: none; display: block; }
+:root[data-theme="dark"] .logo .bowl { fill: #4F67B0; } :root[data-theme="dark"] .logo .rim { stroke: #7A8FCC; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo .bowl { fill: #4F67B0; } :root:not([data-theme="light"]) .logo .rim { stroke: #7A8FCC; } }
+.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--mark); margin: 0; font-weight: 500; }
+.how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); counter-reset: s; }
+.how li { padding: 12px 16px 12px 0; display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; font-size: 14px; color: var(--ink-2); counter-increment: s; min-width: 0; }
+.how li + li { padding-left: 16px; border-left: 1px solid var(--rule); }
+.how li::before { content: counter(s); font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--mark); line-height: 1.1; }
+.how b { color: var(--ink); font-weight: 500; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 10px; border-bottom: 1px solid var(--rule); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.controls input { font: 15px var(--body); color: var(--ink); background: var(--plate); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; flex: 1 1 260px; min-width: 0; }
+.controls input:focus-visible, button:focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; overflow: hidden; }
+.seg button { font: 500 13px var(--body); color: var(--ink); background: transparent; border: 0; padding: 6px 14px; cursor: pointer; }
+.seg button[aria-pressed=true] { background: var(--ink); color: var(--paper); }
+.count { color: var(--ink-2); font-size: 13px; font-variant-numeric: tabular-nums; }
+.tones { display: flex; flex-wrap: wrap; gap: 8px; }
+.tones button { font: 500 13px var(--body); color: var(--ink); background: var(--plate); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px 5px 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.tones button[aria-pressed=true] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.dots { display: inline-flex; } .dots i { width: 14px; height: 14px; border-radius: 50%; margin-left: -4px; box-shadow: 0 0 0 1.5px var(--plate); } .dots i:first-child { margin-left: 0; }
+.tones .c { opacity: .65; font-variant-numeric: tabular-nums; }
+.group { display: grid; gap: 12px; }
+.group h3 { font-family: var(--display); font-size: 24px; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.group h3 small { font: 400 14px var(--body); color: var(--ink-2); }
+.favs { background: var(--plate); border: 1px solid var(--rule); border-radius: 12px; padding: 4px 16px 18px; }
+.favs h3 svg { width: 20px; height: 20px; fill: var(--star); align-self: center; }
+.favs .none { margin: 0; color: var(--ink-2); font-size: 14px; }
+.favs .none svg { width: 15px; height: 15px; vertical-align: -2px; fill: none; stroke: var(--ink-2); stroke-width: 2; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.card { position: relative; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: var(--plate); min-width: 0; content-visibility: auto; contain-intrinsic-size: auto 152px; }
+.card[aria-current=true] { outline: 2px solid var(--mark); outline-offset: 2px; }
+.open { all: unset; box-sizing: border-box; cursor: pointer; display: grid; width: 100%; }
+.open:focus-visible { outline: 2px solid var(--mark); outline-offset: -2px; }
+.open:hover .cap b { text-decoration: underline; }
+.shot { display: block; background: var(--bg); color: var(--fg); padding: 9px 11px; overflow: hidden; }
+pre.code { margin: 0; background: transparent !important; font-family: var(--mono); }
+pre.mini { font-size: 10.5px; line-height: 1.55; white-space: pre; overflow: hidden; }
+.strip { display: flex; height: 6px; } .strip i { flex: 1; display: block; }
+.cap { display: flex; justify-content: space-between; gap: 8px; padding: 7px 11px; font-size: 13px; }
+.cap b { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.cap span { color: var(--ink-2); flex: none; }
+.fav { position: absolute; top: 6px; right: 6px; width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: color-mix(in srgb, var(--bg) 70%, transparent); color: var(--fg); }
+.fav svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.fav[aria-pressed=true] svg { fill: var(--star); stroke: var(--star); }
+.card:not(:hover):not(:focus-within) .fav[aria-pressed=false] { opacity: .55; }
+.empty { color: var(--ink-2); padding: 24px 0; }
+.loading { color: var(--ink-2); }
+/* preview dialog */
+dialog { width: min(1060px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 1px solid var(--rule); border-radius: 14px; background: var(--paper); color: var(--ink); overflow: auto; }
+dialog::backdrop { background: rgba(10, 12, 14, .55); }
+.dlg { display: grid; gap: 16px; padding: 22px max(16px, 3vw) 24px; }
+.dtop { display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; align-items: start; }
+.dtop > div:first-child { flex: 1 1 320px; min-width: 0; }
+.dtop h2 { font-family: var(--display); font-size: 32px; line-height: 1.15; margin: 4px 0 0; }
+.dact { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.btn { font: 500 14px var(--body); color: var(--ink); background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 7px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.btn[aria-pressed=true] svg { fill: var(--star); stroke: var(--star); }
+.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.namebox { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--plate); border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px; }
+.namebox .lbl { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); flex: 1 0 100%; }
+.namebox code { font-family: var(--mono); font-size: 15px; flex: 1 1 300px; min-width: 0; overflow-wrap: anywhere; user-select: all; }
+.namebox .hint { flex: 1 0 100%; font-size: 13px; color: var(--ink-2); }
+.window { border-radius: 10px; overflow: hidden; border: 1px solid var(--rule); background: var(--bg); color: var(--fg); font-family: var(--mono); font-size: 13px; }
+.titlebar { background: var(--dp); color: var(--mu); padding: 7px 12px; font-size: 12px; border-bottom: 1px solid var(--bd); font-family: var(--body); }
+.body { display: grid; grid-template-columns: 170px minmax(0, 1fr); }
+.side { background: var(--sd); padding: 8px 0; border-right: 1px solid var(--bd); font-family: var(--body); font-size: 13px; }
+.side p { margin: 0; padding: 3px 14px; } .side .on { background: var(--hl); } .side .h { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mu); }
+.main { min-width: 0; }
+.tabs { display: flex; background: var(--sd); border-bottom: 1px solid var(--bd); font-family: var(--body); }
+.tab { padding: 7px 14px; color: var(--mu); border-right: 1px solid var(--bd); } .tab.on { background: var(--bg); color: var(--fg); box-shadow: inset 0 -2px 0 var(--ac); }
+.ed { overflow-x: auto; } .ed + .ed { border-top: 1px solid var(--bd); }
+.ed pre.code { padding: 12px 0; line-height: 1.6; counter-reset: ln; }
+.ed .line { display: inline-block; min-width: 100%; padding-right: 16px; }
+.ed .line::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 3.2em; padding-right: 1.2em; text-align: right; color: var(--ln); }
+.ed .line:nth-child(7) { background: var(--hl); }
+.status { background: var(--dp); color: var(--mu); display: flex; flex-wrap: wrap; gap: 16px; padding: 4px 12px; font-size: 12px; font-family: var(--body); border-top: 1px solid var(--bd); align-items: center; }
+.badge { background: var(--ab); color: var(--oa); padding: 0 8px; border-radius: 3px; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.stat { padding: 10px 16px 10px 0; display: grid; gap: 2px; min-width: 0; }
+.stat + .stat { padding-left: 16px; border-left: 1px solid var(--rule); }
+.stat .k { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.stat .v { font-family: var(--display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; font-size: 14px; z-index: 20; }
+@media (max-width: 760px) { .body { grid-template-columns: minmax(0, 1fr); } .side { display: none; } .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stat:nth-child(3) { padding-left: 0; border-left: 0; } .how { grid-template-columns: minmax(0, 1fr); } .how li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+@media (prefers-reduced-motion: no-preference) { .card { transition: transform .15s ease; } .card:hover { transform: translateY(-2px); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brandrow"><svg class="logo" width="40" height="40" aria-hidden="true" viewBox="0 0 40 40"><circle cx="8" cy="16.6" r="4" fill="#E2553A"/><circle cx="16" cy="16.6" r="4" fill="#F29A38"/><circle cx="24" cy="16.6" r="4" fill="#86BF4E"/><circle cx="32" cy="16.6" r="4" fill="#7A4A9E"/><circle cx="12" cy="9.8" r="4" fill="#F2C94C"/><circle cx="20" cy="9.8" r="4" fill="#E06A8E"/><circle cx="28" cy="9.8" r="4" fill="#1D8A93"/><path d="M20 5.6c2.6-2.4 5.6-2.2 6.6-.2-2.4 1.6-4.6 1.6-6.6.2z" fill="#2E8F5B" transform="rotate(-40 20 5.6)"/><path d="M3.5 19.5h33a16.5 16.5 0 0 1-33 0z" class="bowl" fill="#33467A"/><path d="M8 25h24" class="rim" stroke="#4C61A0" stroke-width="1.2" stroke-linecap="round"/></svg><p class="eyebrow">All for One · JetBrains IDE themes</p></div>
+    <h1>Find your theme</h1>
+    <p>696 calm, contrast-checked themes in 9 tones. Open any card to see it in a full editor, save the ones you like, then pick the same name in your IDE.</p>
+  </header>
+  <ol class="how">
+    <li><span><b>Pick a theme</b> and press <b>Copy name</b>.</span></li>
+    <li><span>In your IDE, open <b>Settings → Appearance &amp; Behavior → Appearance</b>.</span></li>
+    <li><span>Open the <b>Theme</b> list and choose that name. Themes are grouped by tone.</span></li>
+  </ol>
+  <div class="controls">
+    <label for="q" hidden>Search themes</label>
+    <input id="q" type="search" placeholder="Search a number, name or tone, e.g. 345, Venice or Ocean" autocomplete="off">
+    <div class="seg" role="group" aria-label="Variant">
+      <button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="d" aria-pressed="false">Dark</button><button type="button" data-f="l" aria-pressed="false">Light</button>
+    </div>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="tones" id="tones" role="group" aria-label="Tone"></div>
+  <section class="group favs" id="favs" aria-label="Your favourites">
+    <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>Your favourites <small id="favc"></small></h3>
+    <p class="none" id="favnone">Tap the <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg> on any theme to keep it here. Favourites are saved in this browser.</p>
+    <div class="grid" id="favgrid"></div>
+  </section>
+  <div id="grid" style="display:grid;gap:20px"><p class="loading">Loading 696 themes…</p></div>
+  <p class="empty" id="empty" hidden>No theme matches that search. Try a number from 1 to 348, a tone such as Ocean, or a name such as Venice.</p>
+</div>
+<dialog id="dlg" aria-labelledby="dname"></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+<template id="mini"><pre class="code mini" tabindex="0"><code><span class="line"><span style="color:var(--k)">export</span><span style="color:var(--k)"> function</span><span style="color:var(--f)"> readable</span><span style="color:var(--o)">(</span><span style="color:var(--fg);font-style:italic">bg</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> string</span><span style="color:var(--o)">)</span><span style="color:var(--o)"> {</span></span>
+<span class="line"><span style="color:var(--k)">  const</span><span style="color:var(--c)"> min</span><span style="color:var(--o)"> =</span><span style="color:var(--n)"> 4.5</span><span style="color:var(--o)">;</span><span style="color:var(--cm);font-style:italic"> // WCAG AA</span></span>
+<span class="line"><span style="color:var(--k)">  return</span><span style="color:var(--fg)"> colors</span><span style="color:var(--o)">.</span><span style="color:var(--f)">filter</span><span style="color:var(--o)">((</span><span style="color:var(--fg);font-style:italic">c</span><span style="color:var(--o)">)</span><span style="color:var(--k)"> =></span><span style="color:var(--f)"> contrast</span><span style="color:var(--o)">(</span><span style="color:var(--fg)">c</span><span style="color:var(--o)">.</span><span style="color:var(--p)">hex</span><span style="color:var(--o)">,</span><span style="color:var(--fg)"> bg</span><span style="color:var(--o)">)</span><span style="color:var(--o)"> >=</span><span style="color:var(--fg)"> min</span><span style="color:var(--o)">);</span></span>
+<span class="line"><span style="color:var(--o)">}</span></span></code></pre></template>
+<template id="full"><pre class="code" tabindex="0"><code><span class="line"><span style="color:var(--cm);font-style:italic">// Fetch a palette and keep only readable swatches</span></span>
+<span class="line"><span style="color:var(--k)">import</span><span style="color:var(--o)"> {</span><span style="color:var(--fg)"> contrast </span><span style="color:var(--o)">}</span><span style="color:var(--k)"> from</span><span style="color:var(--s)"> "./color"</span><span style="color:var(--o)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--k)">interface</span><span style="color:var(--t)"> Swatch</span><span style="color:var(--o)"> {</span><span style="color:var(--fg)"> name</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> string</span><span style="color:var(--o)">;</span><span style="color:var(--fg)"> hex</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> string</span><span style="color:var(--o)">;</span><span style="color:var(--fg)"> combos</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> number</span><span style="color:var(--o)">[]</span><span style="color:var(--o)"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--k)">export</span><span style="color:var(--k)"> async</span><span style="color:var(--k)"> function</span><span style="color:var(--f)"> readable</span><span style="color:var(--o)">(</span><span style="color:var(--fg);font-style:italic">bg</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> string</span><span style="color:var(--o)">,</span><span style="color:var(--fg);font-style:italic"> min</span><span style="color:var(--o)"> =</span><span style="color:var(--n)"> 4.5</span><span style="color:var(--o)">):</span><span style="color:var(--t)"> Promise</span><span style="color:var(--o)">&#x3C;</span><span style="color:var(--t)">Swatch</span><span style="color:var(--o)">[]></span><span style="color:var(--o)"> {</span></span>
+<span class="line"><span style="color:var(--k)">  const</span><span style="color:var(--c)"> res</span><span style="color:var(--o)"> =</span><span style="color:var(--k)"> await</span><span style="color:var(--f)"> fetch</span><span style="color:var(--o)">(</span><span style="color:var(--s)">"/assets/colors.json"</span><span style="color:var(--o)">);</span></span>
+<span class="line"><span style="color:var(--k)">  const</span><span style="color:var(--c)"> all</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> Swatch</span><span style="color:var(--o)">[]</span><span style="color:var(--o)"> =</span><span style="color:var(--k)"> await</span><span style="color:var(--fg)"> res</span><span style="color:var(--o)">.</span><span style="color:var(--f)">json</span><span style="color:var(--o)">();</span></span>
+<span class="line"><span style="color:var(--k)">  return</span><span style="color:var(--fg)"> all</span><span style="color:var(--o)">.</span><span style="color:var(--f)">filter</span><span style="color:var(--o)">((</span><span style="color:var(--fg);font-style:italic">s</span><span style="color:var(--o)">)</span><span style="color:var(--k)"> =></span><span style="color:var(--f)"> contrast</span><span style="color:var(--o)">(</span><span style="color:var(--fg)">s</span><span style="color:var(--o)">.</span><span style="color:var(--p)">hex</span><span style="color:var(--o)">,</span><span style="color:var(--fg)"> bg</span><span style="color:var(--o)">)</span><span style="color:var(--o)"> >=</span><span style="color:var(--fg)"> min </span><span style="color:var(--o)">&#x26;&#x26;</span><span style="color:var(--fg)"> s</span><span style="color:var(--o)">.</span><span style="color:var(--p)">combos</span><span style="color:var(--o)">.</span><span style="color:var(--p)">length</span><span style="color:var(--o)"> ></span><span style="color:var(--n)"> 0</span><span style="color:var(--o)">);</span></span>
+<span class="line"><span style="color:var(--o)">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--k)">const</span><span style="color:var(--c)"> MAX_GLARE</span><span style="color:var(--o)"> =</span><span style="color:var(--n)"> 13</span><span style="color:var(--o)">;</span><span style="color:var(--cm);font-style:italic"> // keep body text under 13:1</span></span>
+<span class="line"><span style="color:var(--k)">export</span><span style="color:var(--k)"> default</span><span style="color:var(--t)"> class</span><span style="color:var(--t)"> Palette</span><span style="color:var(--k)"> extends</span><span style="color:var(--t)"> Map</span><span style="color:var(--o)">&#x3C;</span><span style="color:var(--t)">string</span><span style="color:var(--o)">,</span><span style="color:var(--t)"> Swatch</span><span style="color:var(--o)">></span><span style="color:var(--o)"> {</span></span>
+<span class="line"><span style="color:var(--c)">  @</span><span style="color:var(--fg)">memo </span><span style="color:var(--k)">get</span><span style="color:var(--f)"> warm</span><span style="color:var(--o)">()</span><span style="color:var(--o)"> {</span><span style="color:var(--k)"> return</span><span style="color:var(--o)"> [...</span><span style="color:var(--k);font-style:italic">this</span><span style="color:var(--o)">.</span><span style="color:var(--f)">values</span><span style="color:var(--o)">()].</span><span style="color:var(--f)">filter</span><span style="color:var(--o)">((</span><span style="color:var(--fg);font-style:italic">s</span><span style="color:var(--o)">)</span><span style="color:var(--k)"> =></span><span style="color:var(--fg)"> s</span><span style="color:var(--o)">.</span><span style="color:var(--p)">hex</span><span style="color:var(--o)"> &#x3C;</span><span style="color:var(--s)"> "#c0"</span><span style="color:var(--o)">);</span><span style="color:var(--o)"> }</span></span>
+<span class="line"><span style="color:var(--o)">}</span></span></code></pre></template>
+<template id="py"><pre class="code" tabindex="0"><code><span class="line"><span style="color:var(--o)">@</span><span style="color:var(--c)">dataclass</span><span style="color:var(--o)">(</span><span style="color:var(--fg);font-style:italic">frozen</span><span style="color:var(--o)">=</span><span style="color:var(--c)">True</span><span style="color:var(--o)">)</span></span>
+<span class="line"><span style="color:var(--t)">class</span><span style="color:var(--t)"> Combination</span><span style="color:var(--o)">:</span></span>
+<span class="line"><span style="color:var(--s)">    """A pair or trio of colours from the set."""</span></span>
+<span class="line"><span style="color:var(--fg)">    number</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> int</span></span>
+<span class="line"><span style="color:var(--fg)">    colors</span><span style="color:var(--o)">:</span><span style="color:var(--fg)"> list</span><span style="color:var(--o)">[</span><span style="color:var(--t)">str</span><span style="color:var(--o)">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:var(--k)">    def</span><span style="color:var(--f)"> is_dark_friendly</span><span style="color:var(--o)">(</span><span style="color:var(--fg);font-style:italic">self</span><span style="color:var(--o)">,</span><span style="color:var(--fg);font-style:italic"> threshold</span><span style="color:var(--o)">:</span><span style="color:var(--t)"> float</span><span style="color:var(--o)"> =</span><span style="color:var(--n)"> 0.25</span><span style="color:var(--o)">)</span><span style="color:var(--o)"> -></span><span style="color:var(--t)"> bool</span><span style="color:var(--o)">:</span></span>
+<span class="line"><span style="color:var(--k)">        return</span><span style="color:var(--f)"> any</span><span style="color:var(--o)">(</span><span style="color:var(--f)">lightness</span><span style="color:var(--o)">(</span><span style="color:var(--fg)">c</span><span style="color:var(--o)">)</span><span style="color:var(--o)"> &#x3C;</span><span style="color:var(--fg)"> threshold </span><span style="color:var(--k)">for</span><span style="color:var(--fg)"> c </span><span style="color:var(--k)">in</span><span style="color:var(--fg)"> self</span><span style="color:var(--o)">.</span><span style="color:var(--fg)">colors</span><span style="color:var(--o)">)</span></span></code></pre></template>
+<script>
+const TONES = [{"id":"ember","name":"Ember","desc":"Reds, corals and burnt oranges"},{"id":"sun","name":"Sun","desc":"Golds, yellows and warm ochres"},{"id":"blush","name":"Blush","desc":"Soft pinks, peach and salmon"},{"id":"earth","name":"Earth","desc":"Browns, olives and muted warm tones"},{"id":"forest","name":"Forest","desc":"Greens and yellow-greens"},{"id":"ocean","name":"Ocean","desc":"Teals and blues"},{"id":"dusk","name":"Dusk","desc":"Violets, purples and pinks"},{"id":"mist","name":"Mist","desc":"Soft greys and pale, quiet colours"},{"id":"fire-water","name":"Fire & Water","desc":"Warm and cool colours in equal contrast"}], KEYS = ["k","s","f","t","n","c","p","g","o","fg","cm","ok","er","wa","bg","sd","dp","hl","bd","mu","ln","ac","ab","oa"];
+const TN = Object.fromEntries(TONES.map(g => [g.id, g.name]));
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+const MINI = document.getElementById('mini').innerHTML, FULL = document.getElementById('full').innerHTML, PY = document.getElementById('py').innerHTML;
+const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/></svg>';
+const COPY = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>';
+let D = [], byId = {}, filter = 'all', tone = 'all', current = null;
+let favs = new Set();
+try { favs = new Set(JSON.parse(localStorage.getItem('afo-favs') || '[]')); } catch (_) {}
+const saveFavs = () => { try { localStorage.setItem('afo-favs', JSON.stringify([...favs])); } catch (_) {} };
+const vars = t => KEYS.map((k, i) => '--' + k + ':' + t.v[i]).join(';');
+const card = t => '<div class="card" data-id="' + t.id + '" style="' + vars(t) + '"><button type="button" class="open" aria-label="Preview ' + esc(t.name) + '"><span class="shot">' + MINI + '</span><span class="strip">' + t.combo.map(c => '<i style="background:' + c + '"></i>').join('') + '</span><span class="cap"><b>' + esc(t.short) + '</b><span>' + (t.t === 'd' ? 'Dark' : 'Light') + '</span></span></button><button type="button" class="fav" data-fav="' + t.id + '" aria-pressed="' + favs.has(t.id) + '" aria-label="Favourite ' + esc(t.name) + '">' + STAR + '</button></div>';
+function toast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => el.hidden = true, 1800); }
+function renderFavs() {
+  const list = D.filter(t => favs.has(t.id));
+  document.getElementById('favgrid').innerHTML = list.map(card).join('');
+  document.getElementById('favnone').hidden = list.length > 0;
+  document.getElementById('favc').textContent = list.length ? list.length + (list.length === 1 ? ' theme' : ' themes') : '';
+  document.querySelectorAll('[data-fav]').forEach(b => b.setAttribute('aria-pressed', favs.has(b.dataset.fav)));
+}
+function toggleFav(id) { favs.has(id) ? favs.delete(id) : favs.add(id); saveFavs(); renderFavs(); toast(favs.has(id) ? 'Added to favourites' : 'Removed from favourites'); }
+function apply() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('#grid .card').forEach(c => {
+    const t = byId[c.dataset.id];
+    const ok = (filter === 'all' || t.t === filter) && (tone === 'all' || t.tone === tone) && (!q || (/^\d+$/.test(q) ? t.n === +q : t.hay.includes(q)));
+    c.hidden = !ok; if (ok) shown++;
+  });
+  document.querySelectorAll('#grid .group').forEach(g => { const n = g.querySelectorAll('.card:not([hidden])').length; g.hidden = !n; g.querySelector('.gc').textContent = n + (n === 1 ? ' theme' : ' themes'); });
+  document.getElementById('count').textContent = shown + ' of ' + D.length + ' themes';
+  document.getElementById('empty').hidden = shown > 0;
+}
+async function copyName() {
+  const name = current.display;
+  try { await navigator.clipboard.writeText(name); toast('Copied: ' + name); }
+  catch (_) { const r = document.createRange(); r.selectNodeContents(document.getElementById('fullname')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Name selected. Press Ctrl+C or ⌘C to copy'); }
+}
+function show(id) {
+  const t = byId[id]; if (!t) return;
+  current = t;
+  const sib = D.find(x => x.n === t.n && x.t !== t.t);
+  document.querySelectorAll('.card').forEach(c => c.setAttribute('aria-current', c.dataset.id === t.id));
+  const dlg = document.getElementById('dlg');
+  dlg.innerHTML = '<div class="dlg"><div class="dtop"><div><p class="eyebrow">' + (t.t === 'd' ? 'Dark' : 'Light') + ' theme · ' + TN[t.tone] + ' tone</p><h2 id="dname">' + esc(t.name) + '</h2></div><div class="dact">' +
+    (sib ? '<div class="seg" role="group" aria-label="Variant"><button type="button" data-open="' + (t.t === 'd' ? t.id : sib.id) + '" aria-pressed="' + (t.t === 'd') + '">Dark</button><button type="button" data-open="' + (t.t === 'l' ? t.id : sib.id) + '" aria-pressed="' + (t.t === 'l') + '">Light</button></div>' : '') +
+    '<button type="button" class="btn" data-fav="' + t.id + '" aria-pressed="' + favs.has(t.id) + '">' + STAR + 'Favourite</button><button type="button" class="btn" data-close aria-label="Close preview">Close</button></div></div>' +
+    '<div class="namebox"><span class="lbl">Name in the IDE theme list</span><code id="fullname">' + esc(t.display) + '</code><button type="button" class="btn primary" data-copy>' + COPY + 'Copy name</button><span class="hint">Settings → Appearance &amp; Behavior → Appearance → Theme. Type “' + t.num + '” in the list to jump to it.</span></div>' +
+    '<div class="window" style="' + vars(t) + '"><div class="titlebar">palette.ts — all-for-one</div><div class="body"><aside class="side"><p class="h">Project</p><p>src</p><p class="on">palette.ts</p><p>combos.py</p><p>README.md</p></aside><div class="main"><div class="tabs"><span class="tab on">palette.ts</span><span class="tab">combos.py</span></div><div class="ed">' + FULL + '</div><div class="ed">' + PY + '</div></div></div><div class="status"><span class="badge">main</span><span>7:14</span><span>UTF-8</span><span>' + esc(t.name) + '</span></div></div>' +
+    '<div class="facts"><div class="stat"><span class="k">Body text</span><span class="v">' + t.st[0].toFixed(1) + ':1</span></div><div class="stat"><span class="k">Lowest syntax</span><span class="v">' + t.st[1].toFixed(1) + ':1</span></div><div class="stat"><span class="k">Comments</span><span class="v">' + t.st[2].toFixed(1) + ':1</span></div><div class="stat"><span class="k">Checks passed</span><span class="v">' + t.pass + '/' + t.checks + '</span></div></div></div>';
+  if (!dlg.open) { try { dlg.showModal(); } catch (_) { dlg.setAttribute('open', ''); } }
+  try { history.replaceState(null, '', '#t' + t.id); } catch (_) {}
+}
+function closeDlg() { const dlg = document.getElementById('dlg'); if (dlg.open) dlg.close(); }
+document.getElementById('dlg').addEventListener('close', () => { try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {} });
+document.getElementById('dlg').addEventListener('click', e => { if (e.target.id === 'dlg') closeDlg(); });
+document.addEventListener('click', e => {
+  const fv = e.target.closest('[data-fav]'); if (fv) { toggleFav(fv.dataset.fav); return; }
+  const o = e.target.closest('.open'); if (o) return show(o.closest('.card').dataset.id);
+  const op = e.target.closest('[data-open]'); if (op) return show(op.dataset.open);
+  if (e.target.closest('[data-copy]')) return copyName();
+  if (e.target.closest('[data-close]')) return closeDlg();
+  const tb = e.target.closest('#tones [data-tone]'); if (tb) { tone = tb.dataset.tone; document.querySelectorAll('#tones button').forEach(b => b.setAttribute('aria-pressed', b === tb)); return apply(); }
+  const f = e.target.closest('[data-f]'); if (f) { filter = f.dataset.f; document.querySelectorAll('[data-f]').forEach(b => b.setAttribute('aria-pressed', b === f)); apply(); }
+});
+document.getElementById('q').addEventListener('input', apply);
+window.addEventListener('hashchange', () => { const id = location.hash.slice(2); if (byId[id]) show(id); });
+fetch('themes.json').then(r => r.json()).then(rows => {
+  D = rows.map(([id, tn, t, name, display, combo, v, st, pass, checks, n]) => ({ id, tone: tn, t, num: String(n).padStart(3, '0'), short: String(n).padStart(3, '0') + ' ' + name, name: String(n).padStart(3, '0') + ' ' + name + (t === 'd' ? ' Dark' : ' Light'), display, combo, v, st, pass, checks, n, hay: (display + ' ' + TN[tn]).toLowerCase() }));
+  byId = Object.fromEntries(D.map(t => [t.id, t]));
+  document.getElementById('grid').innerHTML = TONES.map(g => '<section class="group" data-tone="' + g.id + '"><h3>' + esc(g.name) + ' <small>' + esc(g.desc) + ' · <span class="gc"></span></small></h3><div class="grid">' + D.filter(t => t.tone === g.id).map(card).join('') + '</div></section>').join('');
+  document.getElementById('tones').innerHTML = '<button type="button" data-tone="all" aria-pressed="true" style="padding-left:12px">All tones</button>' + TONES.map(g => {
+    const list = D.filter(t => t.tone === g.id && t.t === 'd');
+    const pick = [0, Math.floor(list.length / 2), list.length - 1].map(i => list[i].v[0]);
+    return '<button type="button" data-tone="' + g.id + '" aria-pressed="false"><span class="dots">' + pick.map(c => '<i style="background:' + c + '"></i>').join('') + '</span>' + esc(g.name) + ' <span class="c">' + list.length * 2 + '</span></button>';
+  }).join('');
+  renderFavs(); apply();
+  const id = location.hash.slice(2); if (byId[id]) show(id);
+}).catch(() => { document.getElementById('grid').innerHTML = '<p class="empty">The theme list could not load. Reload the page to try again.</p>'; });
+</script>
+</body>
+</html>
