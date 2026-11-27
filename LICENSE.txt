@@ -1,0 +1,43 @@
+All for One — Calm Color Themes
+Copyright (c) 2026 Weam Adel. All rights reserved.
+
+This plugin and the themes in it are licensed, not sold.
+
+YOU MAY
+- Install and use the plugin and its themes in JetBrains IDEs while you hold
+  a valid licence for it bought through JetBrains Marketplace.
+
+YOU MAY NOT
+- Copy, share, redistribute, resell, sublicense or publish the plugin, its
+  themes or any theme or colour-scheme file taken from it, in whole or in part.
+- Use the themes, or files derived from them, in another theme, plugin or
+  product, whether free or paid.
+- Remove or work around the licence check, or remove this notice.
+
+The purchase and licence terms of JetBrains Marketplace also apply.
+
+NO WARRANTY
+The plugin is provided "as is", without warranty of any kind. The author is not
+liable for any claim, damages or other liability arising from its use.
+
+THIRD-PARTY NOTICES
+Portions of the colour data: Copyright (c) 2020 Matt DesLauriers and
+Copyright (c) 2024 Dain Blodorn, used under the MIT License:
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
